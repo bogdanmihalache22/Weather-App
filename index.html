@@ -13,10 +13,17 @@
     <div class="weather">
         <h2>Today's Forecast In</h2>
         <h2 id="cityName">City Name</h2>
-        <p id="temperature">Temperature: <span id="temperatureValue"></span>&deg;C</p>
+        <p id="temperature">Temperature: <span id="temperatureValue" data-unit="C"></span>&deg;C</p>
+        <label class="switch">
+            <input type="checkbox" id="unitToggle">
+            <span class="slider round"></span>
+        </label>
+        <span id="unitLabel">Toggle Unit</span>        
         <p id="description">Description: <i class="wi wi-day-sunny"></i></p>
         <p id="humidity">Humidity: <span id="humidityValue"></span>%</p>
         <p id="wind">Wind Speed: <span id="windValue"></span> m/s</p>
+    </div>
+    <div id="weather-widget" class="widget">
     </div>
     <div class="forecast">
         <h2>Five-Day Forecast</h2>

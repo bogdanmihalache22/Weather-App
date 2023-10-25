@@ -18,7 +18,6 @@ document.getElementById('searchBtn').addEventListener('click', function() {
             const temperature = data.main.temp;
 
             if (temperature > 10) {
-                
                 const unsplashApiKey = 'TO1CieiXi8xBwCctL7tR6_eZcTeDT5eOd-22uqsga6A';
                 const query = encodeURIComponent(data.name); 
                 const unsplashUrl = `https://api.unsplash.com/photos/random?query=${query}&client_id=${unsplashApiKey}`;
@@ -74,4 +73,35 @@ document.getElementById('searchBtn').addEventListener('click', function() {
             document.querySelector('.forecast').style.opacity = 1; 
         })
         .catch(error => console.log('Error:', error));
+});
+
+// Add an event listener to the toggle switch
+document.getElementById('unitToggle').addEventListener('change', function() {
+    // Get the temperature element
+    const temperatureValue = document.getElementById('temperatureValue');
+    
+    // Get the current temperature and unit
+    const temperature = parseFloat(temperatureValue.textContent);
+    const currentUnit = temperatureValue.getAttribute('data-unit');
+    
+    // Define the units and the conversion factor
+    const units = {
+        'C': '°C',
+        'F': '°F'
+    };
+    
+    if (currentUnit === 'C') {
+        // Convert to Fahrenheit
+        const temperatureFahrenheit = (temperature * 9/5) + 32;
+        temperatureValue.textContent = temperatureFahrenheit.toFixed(2);
+        temperatureValue.setAttribute('data-unit', 'F');
+    } else {
+        // Convert to Celsius
+        const temperatureCelsius = (temperature - 32) * 5/9;
+        temperatureValue.textContent = temperatureCelsius.toFixed(2);
+        temperatureValue.setAttribute('data-unit', 'C');
+    }
+
+    // Update the temperature unit label
+    temperatureValue.innerHTML += units[temperatureValue.getAttribute('data-unit')];
 });
