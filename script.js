@@ -12,15 +12,28 @@ document.getElementById('searchBtn').addEventListener('click', function() {
             document.getElementById('temperatureValue').textContent = data.main.temp.toFixed(2);
             document.getElementById('description').textContent = `Description: ${data.weather[0].description}`;
             document.querySelector('.weather').style.opacity = 1; 
+            document.getElementById('humidityValue').textContent = data.main.humidity;
+            document.getElementById('windValue').textContent = data.wind.speed;
 
             const temperature = data.main.temp;
 
             if (temperature > 10) {
-                document.body.style.backgroundImage = 'url("sun.jpg")'; 
+                
+                const unsplashApiKey = 'TO1CieiXi8xBwCctL7tR6_eZcTeDT5eOd-22uqsga6A';
+                const query = encodeURIComponent(data.name); 
+                const unsplashUrl = `https://api.unsplash.com/photos/random?query=${query}&client_id=${unsplashApiKey}`;
+
+                fetch(unsplashUrl)
+                    .then(response => response.json())
+                    .then(imageData => {
+                        const imageUrl = imageData.urls.regular; 
+                        document.body.style.backgroundImage = `url(${imageUrl})`;
+                    })
+                    .catch(error => console.log('Error fetching location image:', error));
             } else if (temperature <= 0) {
-                document.body.style.backgroundImage = 'url("snow.jpg")';
+                document.body.style.backgroundImage = 'url("snow.jpg")'; 
             } else {
-                document.body.style.backgroundImage = 'none';
+                document.body.style.backgroundImage = 'none'; 
             }
         })
         .catch(error => console.log('Error:', error));
