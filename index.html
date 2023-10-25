@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather App</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1>Weather App</h1>
+    <div class="search">
+        <input type="text" id="city" placeholder="Enter a city">
+        <button id="searchBtn">Search</button>
+    </div>
+    <div class="weather">
+        <h2>Today's Forecast In</h2>
+        <h2 id="cityName">City Name</h2>
+        <p id="temperature">Temperature: <span id="temperatureValue"></span>&deg;C</p>
+        <p id="description">Description: <i class="wi wi-day-sunny"></i></p>
+    </div>
+    <div class="forecast">
+        <h2>Five-Day Forecast</h2>
+        <div class="forecast-items">
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
